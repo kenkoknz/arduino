@@ -1,0 +1,66 @@
+/*
+ State change detection (edge detection) with 1sheeld to send email and txt to voice shield 	
+ The circuit:
+ * pushbutton attached to pin 9 from +5V;  10K resistor attached to pin 9 from ground
+ * LED attached from pin 13 to ground (or use the built-in LED on
+   most Arduino boards)
+ */
+
+
+#define CUSTOM_SETTINGS
+#define INCLUDE_EMAIL_SHIELD
+#define INCLUDE_TEXT_TO_SPEECH_SHIELD
+//#define INCLUDE_PUSH_BUTTON_SHIELD
+
+/* Include 1Sheeld library. */
+#include <OneSheeld.h>
+
+
+// this constant won't change:
+const int  buttonPin = 9;    // the pin that the pushbutton is attached to
+const int ledPin = 13;       // the pin that the LED is attached to
+
+// Variables will change:
+int buttonPushCounter = 0;   // counter for the number of button presses
+int buttonState = 0;         // current state of the button
+int lastButtonState = 0;     // previous state of the button
+
+void setup() { 
+ /* Start communication.*/
+  OneSheeld.begin();
+  // initialize the button pin as a input:
+  pinMode(buttonPin, INPUT);
+  // initialize the LED as an output:
+  pinMode(ledPin, OUTPUT);
+  delay(300);
+}
+
+
+void loop() {
+  // read the pushbutton input pin:
+  buttonState = digitalRead(buttonPin);
+  delay(500);
+
+  // compare the buttonState to its previous state
+  if (buttonState != lastButtonState) {
+    // if the state has changed, increment the counter
+    if (buttonState == HIGH) {
+      // if the current state is HIGH then the button
+      // wend from off to on:
+      buttonPushCounter++;
+      Email.send("ken.kok@waitematadhb.govt.nz","KK stock control","Hi, order 3 more plse!");
+      digitalWrite(ledPin, HIGH);
+      delay(500);
+      TextToSpeech.say("email sent");
+      delay(1000);
+      digitalWrite(ledPin, LOW);
+    } 
+    else {
+      // if the current state is LOW then the button
+      // wend from on to off:
+    //  Serial.println("off"); 
+    }
+  }
+  
+  
+}
