@@ -1,0 +1,122 @@
+/*
+feb16kenkok
+ken kok tea maker
+Push Button Shield then txt to speech, activate servo 
+*/
+
+#define CUSTOM_SETTINGS
+#define INCLUDE_PUSH_BUTTON_SHIELD
+#define INCLUDE_TEXT_TO_SPEECH_SHIELD
+
+/* Include 1Sheeld library. */
+#include <OneSheeld.h>
+
+//include servo librry
+#include <Servo.h>
+Servo myservo;  // create servo object to control a servo 
+                // twelve servo objects can be created on most 
+                
+/* A name for the LED on pin 13. */
+int ledPin = 13;
+int pos = 0;
+int i = 0;
+
+
+
+void setup()
+{
+  /* Start communication. */
+  OneSheeld.begin();
+  /* Set the LED pin as output. */
+  pinMode(ledPin,OUTPUT);
+  myservo.attach(3);  // attaches the servo on pin 3 to the servo object
+  myservo.write(120);  // tell servo to go to position initial position 
+  delay(1000);    
+  TextToSpeech.say("press button when ready ");
+  delay(2000);
+}
+
+void spk1()
+{
+  TextToSpeech.say("infusion process begin");
+  delay(1000);
+  myservo.write(90);  // tell servo to go to hi position 
+  delay(1000);  
+  myservo.write(50);  // tell servo to go to lo position 
+  delay(1000);
+  myservo.write(90);  // tell servo to go to hi position 
+  delay(1000);
+  TextToSpeech.say("low speed");
+  delay(1000);
+  for (i=0; i<3; i +=1)
+    {
+    for(pos=50; pos<90; pos +=1)
+      {myservo.write(pos);
+      delay(50);
+      }
+
+    for(pos=90; pos>50; pos -=1)
+     
+     { {myservo.write(pos);
+      delay(50);
+    }
+      
+     }
+
+  }
+myservo.write(50);  // tell servo to go to lo position
+TextToSpeech.say("infusion");
+  delay(3000); //***infusion time
+  
+ for(pos=50; pos<121; pos +=1)
+      {myservo.write(pos);
+      delay(50);
+      }
+      
+  
+  
+ // myservo.write(120);  // tell servo to go to hi position 
+  delay(1000);
+  myservo.write(110);
+  delay(1000);
+  myservo.write(120);  // tell servo to go to hi position 
+  delay(1000);
+  myservo.write(110);
+  delay(1000);
+  myservo.write(120);  // tell servo to go to hi position 
+  delay(1000);
+  myservo.write(110);
+  delay(1000);
+  myservo.write(120);
+  TextToSpeech.say("tea is ready, enjoy");
+  delay(3000);
+  
+  
+}
+
+
+
+void loop()
+{
+  /* Always check if the push button is pressed. */
+  if(PushButton.isPressed())
+  {    
+    
+    /* Turn on the LED. */
+    digitalWrite(ledPin,HIGH);
+    spk1();
+  }
+  else
+  {
+    
+    myservo.write(120);  // tell servo to go back to position initial position 
+    delay(1000);   
+    /* Turn on the LED. */
+    digitalWrite(ledPin,LOW);
+    
+    
+  }
+
+}
+
+
