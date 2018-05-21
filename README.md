@@ -6,4 +6,11 @@ Arduino sketches 2016
 --------------------------------------
 useful links:
 http://henrysbench.capnfatz.com/
+---------------------------------------
+
+c++ programming
+
+functions:
+https://startingelectronics.org/software/arduino/learn-to-program-course/15-functions/
+
 
