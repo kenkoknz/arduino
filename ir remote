@@ -1,0 +1,10 @@
+ref:https://learn.sparkfun.com/tutorials/ir-communication
+
+
+library: https://github.com/z3t0/Arduino-IRremote
+
+details: http://www.righto.com/2009/08/multi-protocol-infrared-remote-library.html
+
+universal remote record/playback: http://www.righto.com/2009/09/arduino-universal-remote-record-and.html
+
+
