@@ -16,3 +16,6 @@ https://startingelectronics.org/software/arduino/learn-to-program-course/15-func
 
 
 https://www.youtube.com/watch?v=mHa1mUd1Kmg
+
+
+different boardspes ty: https://core-electronics.com.au/tutorials/compare-arduino-boards.html 
