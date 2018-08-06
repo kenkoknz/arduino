@@ -9,34 +9,7 @@ universal remote record/playback: http://www.righto.com/2009/09/arduino-universa
 
 ----------------------
 code to transmit ir:
-/*
- * kk ir control
- use ir record to find codes
- 
- 
- */
 
-#include <IRremote.h>
-//IR Variable declaration
-IRsend irsend;
-
-void setup()
-{
-//Replace for your IR Code here.
-  irsend.sendNEC(0xFE9867, 32); // replace as required e.g for veon ch+
-  delay(5000);
-  
-}
-
-void loop()
-{
-  
-  
-  
-}
-================
-
-code for tv remote:
 /*
  * kk ir control
  */
@@ -60,19 +33,17 @@ void loop()
 {
 if (digitalRead(12) == 
 LOW) {
-    // turn LED on:    digitalWrite(ledPin, HIGH);
+   digitalWrite(13, HIGH);
       Serial.println("but=low send ir ");
       irsend.sendNEC(0xFE18E7, 32); // 
       delay(1000);
   } 
   else {
     // turn LED off:
-  
+  digitalWrite(13
+  ,LOW);
 Serial.println("but=high ");
   delay(100);
  
   }
-  
-}
-
-++++++++++++++++++++++++
+  +++++++++++++++++++++++++++++++
