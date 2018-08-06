@@ -8,3 +8,28 @@ details: http://www.righto.com/2009/08/multi-protocol-infrared-remote-library.ht
 universal remote record/playback: http://www.righto.com/2009/09/arduino-universal-remote-record-and.html
 
 
+code to transmit ir:
+/*
+ * kk ir control
+ */
+
+#include <IRremote.h>
+//IR Variable declaration
+IRsend irsend;
+
+void setup()
+{
+//Replace for your IR Code here.
+  irsend.sendNEC(0xFE9867, 32); // replace as required e.g for veon ch+
+  delay(5000);
+  
+}
+
+void loop()
+{
+  
+}
+
+
+
+
